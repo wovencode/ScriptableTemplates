@@ -39,7 +39,7 @@ namespace wovencode {
 		// -------------------------------------------------------------------------------
         // data
         // loads the dictionary the first time it is accessed
-        // skips any duplicate (by object name) and notifies, but continues loading
+        // skips if there are any duplicates and notifies the user
         // returns the cached dictionary
         // -------------------------------------------------------------------------------
 		public static Dictionary<int, ItemTemplate> data

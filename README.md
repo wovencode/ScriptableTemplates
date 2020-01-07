@@ -1,15 +1,13 @@
-# woco-templates
- Wovencore Templates
-
-WOVENCODE UNITY3d OPEN-SOURCE CLASSES
+Templates (Wovencore)
 ==========================================================================================
-
 by Fhiz (Weaver)
 MIT licensed
+https://github.com/wovencode/
 
 Summary
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-A collection of common scripts that are part of my future Unity3d projects.
+A simple, generic class derived from ScriptableObjects in order to load and access large
+amounts of data.
 
 Quickstart
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
@@ -26,6 +24,14 @@ Basic Usage
 
 * All scripts are in the "wovencode" namespace
 * Add "using wovencode;" to your script headers.
+
+Requirements
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+* Wovencore Tools (https://github.com/wovencode/woco-tools)
+
+Contains Open-Source Code
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+* None
 
 Documentation
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 

@@ -46,20 +46,28 @@ namespace wovencode {
 		{
 			get {
 			
-				if (_data == null)
-				{
-			
-					List<ItemTemplate> templates = Resources.LoadAll<ItemTemplate>(ItemTemplate._folderName).ToList();
-					
-					if (templates.HasDuplicates())
-						Debug.LogWarning("[Warning] Skipped loading due to duplicate(s) in Resources subfolder: " + ItemTemplate._folderName);
-					else
-						_data = templates.ToDictionary(x => x.name.GetDeterministicHashCode(), x => x);
-						
-				}
+				ItemTemplate.BuildCache();
 			
 				return _data;
 			}
+		}
+		
+		// -------------------------------------------------------------------------------
+        // BuildCache
+        // called when the dictionary is accessed the first time in order to build it
+        // BuildCache can be called manually as well to load the dictionary
+        // -------------------------------------------------------------------------------
+		public static void BuildCache()
+		{
+			if (_data != null) return;
+				
+			List<ItemTemplate> templates = Resources.LoadAll<ItemTemplate>(ItemTemplate._folderName).ToList();
+					
+			if (templates.HasDuplicates())
+				Debug.LogWarning("[Warning] Skipped loading due to duplicate(s) in Resources subfolder: " + ItemTemplate._folderName);
+			else
+				_data = templates.ToDictionary(x => x.name.GetDeterministicHashCode(), x => x);
+			
 		}
 		
 		// -------------------------------------------------------------------------------
@@ -91,9 +99,9 @@ namespace wovencode {
 		}
 		
 		// -------------------------------------------------------------------------------
-    
-    
-    
+
 	}
 
 }
+
+// =======================================================================================

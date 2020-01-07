@@ -18,16 +18,25 @@ namespace wovencode {
 		
 		[Header("Basic Info")]
 		[Tooltip("This name will be displayed to the end-user (copied from object name if empty)")]
-		public string 			title;				// we never use the object name as the name that is shown to users
-													// instead we provide a custom string property called 'title'
-													// this way, you can rename your objects anytime without messing up
-													// the dictionary (as the dictionary keys are generated using the
-													// true name of the object)
+		public string 			title;				
+		// we never use the object name as the name that is shown to users
+		// instead we provide a custom string property called 'title'
+		// this way, you can rename your objects anytime without messing up
+		// the dictionary (as the dictionary keys are generated using the
+		// true name of the object)
 													
 		[Tooltip("The name of a subfolder in the project 'Resources' folder (case-sensitive)")]
     	public string 			folderName;
+    	
+		// we cache the object name here for a bit of performance
+		protected string 		_name;
 		
-		protected string 		_name; 				// we cache the object name here for a bit of performance
+		// -------------------------------------------------------------------------------
+        // BuildCache
+        // This methods builds the actual dictionary and fills it with data, its up to the
+        // derived class how to do that.
+        // -------------------------------------------------------------------------------
+		//public abstract static void BuildCache();
 		
 		// -------------------------------------------------------------------------------
         // name

@@ -16,6 +16,10 @@ namespace wovencode {
 	public abstract partial class BaseTemplate : ScriptableTemplate
 	{
 		
+		
+		public string			sortCategory;
+		public int				sortOrder;
+		
 		public Sprite 			smallIcon;
 		public Sprite			backgroundIcon;
 		public RarityTemplate 	rarity;

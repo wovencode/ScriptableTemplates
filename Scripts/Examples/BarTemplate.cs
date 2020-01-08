@@ -1,5 +1,5 @@
 ﻿// =======================================================================================
-// SpellTemplate
+// BarTemplate
 // by Weaver (Fhiz)
 // MIT licensed
 // =======================================================================================
@@ -14,10 +14,10 @@ using wovencode;
 namespace wovencode {
 	
 	// ===================================================================================
-	// SpellTemplate
+	// BarTemplate
 	// ===================================================================================
-	[CreateAssetMenu(fileName = "New SpellTemplate", menuName = "Templates/New SpellTemplate", order = 999)]
-	public partial class SpellTemplate : ScriptableTemplate
+	[CreateAssetMenu(fileName = "New BarTemplate", menuName = "Templates/New BarTemplate", order = 999)]
+	public partial class BarTemplate : ScriptableTemplate
 	{
     
     	/*
@@ -34,7 +34,7 @@ namespace wovencode {
     	// Resources.LoadAll on a specific folder is much faster than on the whole Resources folder
 		public static string _folderName = "";
 		
-		static Dictionary<int, SpellTemplate> _data;
+		static Dictionary<int, BarTemplate> _data;
 		
 		// -------------------------------------------------------------------------------
         // data
@@ -42,11 +42,11 @@ namespace wovencode {
         // skips if there are any duplicates and notifies the user
         // returns the cached dictionary
         // -------------------------------------------------------------------------------
-		public static Dictionary<int, SpellTemplate> data
+		public static Dictionary<int, BarTemplate> data
 		{
 			get {
 			
-				SpellTemplate.BuildCache();
+				BarTemplate.BuildCache();
 			
 				return _data;
 			}
@@ -61,10 +61,10 @@ namespace wovencode {
 		{
 			if (_data != null) return;
 				
-			List<SpellTemplate> templates = Resources.LoadAll<SpellTemplate>(SpellTemplate._folderName).ToList();
+			List<BarTemplate> templates = Resources.LoadAll<BarTemplate>(BarTemplate._folderName).ToList();
 					
 			if (templates.HasDuplicates())
-				Debug.LogWarning("[Warning] Skipped loading due to duplicate(s) in Resources subfolder: " + SpellTemplate._folderName);
+				Debug.LogWarning("[Warning] Skipped loading due to duplicate(s) in Resources subfolder: " + BarTemplate._folderName);
 			else
 				_data = templates.ToDictionary(x => x.name.GetDeterministicHashCode(), x => x);
 			

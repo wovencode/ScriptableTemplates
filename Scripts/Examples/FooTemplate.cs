@@ -1,5 +1,5 @@
 ﻿// =======================================================================================
-// ItemTemplate
+// FooTemplate
 // by Weaver (Fhiz)
 // MIT licensed
 // =======================================================================================
@@ -14,10 +14,10 @@ using wovencode;
 namespace wovencode {
 	
 	// ===================================================================================
-	// ItemTemplate
+	// FooTemplate
 	// ===================================================================================
-	[CreateAssetMenu(fileName = "New ItemTemplate", menuName = "Templates/New ItemTemplate", order = 999)]
-	public partial class ItemTemplate : ScriptableTemplate
+	[CreateAssetMenu(fileName = "New FooTemplate", menuName = "Templates/New FooTemplate", order = 999)]
+	public partial class FooTemplate : ScriptableTemplate
 	{
     
     	/*
@@ -34,7 +34,7 @@ namespace wovencode {
     	// Resources.LoadAll on a specific folder is much faster than on the whole Resources folder
 		public static string _folderName = "";
 		
-		static Dictionary<int, ItemTemplate> _data;
+		static Dictionary<int, FooTemplate> _data;
 		
 		// -------------------------------------------------------------------------------
         // data
@@ -42,11 +42,11 @@ namespace wovencode {
         // skips if there are any duplicates and notifies the user
         // returns the cached dictionary
         // -------------------------------------------------------------------------------
-		public static Dictionary<int, ItemTemplate> data
+		public static Dictionary<int, FooTemplate> data
 		{
 			get {
 			
-				ItemTemplate.BuildCache();
+				FooTemplate.BuildCache();
 			
 				return _data;
 			}
@@ -61,10 +61,10 @@ namespace wovencode {
 		{
 			if (_data != null) return;
 				
-			List<ItemTemplate> templates = Resources.LoadAll<ItemTemplate>(ItemTemplate._folderName).ToList();
+			List<FooTemplate> templates = Resources.LoadAll<FooTemplate>(FooTemplate._folderName).ToList();
 					
 			if (templates.HasDuplicates())
-				Debug.LogWarning("[Warning] Skipped loading due to duplicate(s) in Resources subfolder: " + ItemTemplate._folderName);
+				Debug.LogWarning("[Warning] Skipped loading due to duplicate(s) in Resources subfolder: " + FooTemplate._folderName);
 			else
 				_data = templates.ToDictionary(x => x.name.GetDeterministicHashCode(), x => x);
 			

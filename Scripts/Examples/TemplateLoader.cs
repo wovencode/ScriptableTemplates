@@ -19,47 +19,51 @@ public class TemplateLoader : MonoBehaviour
 		
 	*/
 	
-	public string templateNameItem 	= "ExampleItem";
-	public string templateNameSpell = "ExampleSpell";
+	public string templateNameFoo 	= "FooTemplate1";
+	public string templateNameBar 	= "BarTemplate1";
 	
+	// -----------------------------------------------------------------------------------
+	// Awake
+	// -----------------------------------------------------------------------------------
     void Awake()
     {
-    	LoadItems();
-    	LoadSpells();
-    	
+    	LoadFoo();
+    	LoadBar();
     }
-
-	void LoadSpells()
+    
+	// -----------------------------------------------------------------------------------
+	// LoadSpells
+	// This example triggers caching of templates by accessing one of it by its name
+	// -----------------------------------------------------------------------------------
+	void LoadFoo()
 	{
 	
-		Debug.Log("----- LOAD SPELLS -----");
-		Debug.Log("Trying to load all BarTemplates by accessing one by name...");
-    	
-    	BarTemplate.data.TryGetValue(templateNameSpell.GetDeterministicHashCode(), out BarTemplate template);
-    	
-        if (template)
-        	Debug.Log("The BarTemplate '"+template.title+"' was found in the 'BarTemplates' Dictionary");
-        else
-        	Debug.Log("No BarTemplate named '"+templateNameSpell+"' was found!");
-        
-        Debug.Log("A total of '"+BarTemplate.data.Count+"' templates have been cached from '"+BarTemplate._folderName+"' into the Dictionary.");
-	}
-	
-	
-	void LoadItems()
-	{
-	
-		Debug.Log("----- LOAD ITEMS -----");
+		Debug.Log("----- LOAD FOO -----");
 		Debug.Log("Trying to load all FooTemplates by accessing one by name...");
     	
-    	FooTemplate.data.TryGetValue(templateNameItem.GetDeterministicHashCode(), out FooTemplate template);
+    	FooTemplate.data.TryGetValue(templateNameFoo.GetDeterministicHashCode(), out FooTemplate template);
     	
         if (template)
-        	Debug.Log("The FooTemplate '"+template.title+"' was found in the 'FooTemplates' Dictionary");
+        	Debug.Log("The FooTemplate '"+template.title+"' was found in the 'FooTemplate' Dictionary");
         else
-        	Debug.Log("No FooTemplate named '"+templateNameItem+"' was found!");
+        	Debug.Log("No FooTemplate named '"+templateNameFoo+"' was found!");
         
-        Debug.Log("A total of '"+FooTemplate.data.Count+"' templates have been cached from '"+FooTemplate._folderName+"' into the Dictionary.");
+        Debug.Log("A total of '"+FooTemplate.data.Count+"' FooTemplates have been cached from '"+FooTemplate._folderName+"' into the Dictionary.");
+	}
+	
+	// -----------------------------------------------------------------------------------
+	// LoadBar
+	// This example uses the 'BuildCache' method on the template class to cache them
+	// -----------------------------------------------------------------------------------
+	void LoadBar()
+	{
+	
+		Debug.Log("----- LOAD BAR -----");
+		Debug.Log("Trying to load all BarTemplates by using 'BuildCache'...");
+    	
+    	BarTemplate.BuildCache();
+    	
+        Debug.Log("A total of '"+BarTemplate.data.Count+"' BarTemplates have been cached from '"+BarTemplate._folderName+"' into the Dictionary.");
 	}
 
 }

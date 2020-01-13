@@ -66,7 +66,7 @@ namespace wovencode {
 			if (templates.HasDuplicates())
 				Debug.LogWarning("[Warning] Skipped loading due to duplicate(s) in Resources subfolder: " + FooTemplate._folderName);
 			else
-				_data = templates.ToDictionary(x => x.name.GetDeterministicHashCode(), x => x);
+				_data = templates.ToDictionary(x => x.hash, x => x);
 			
 		}
 		

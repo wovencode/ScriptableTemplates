@@ -16,7 +16,7 @@ namespace wovencode {
 	// ===================================================================================
 	// BaseTemplate
 	// ===================================================================================
-	[CreateAssetMenu(fileName = "New RarityTemplate", menuName = "Templates/New RarityTemplate", order = 999)]
+	[CreateAssetMenu(fileName = "New Rarity", menuName = "Templates/New Rarity", order = 999)]
 	public partial class RarityTemplate : ScriptableTemplate
 	{
 		
@@ -52,7 +52,7 @@ namespace wovencode {
 			if (templates.HasDuplicates())
 				Debug.LogWarning("[Warning] Skipped loading due to duplicate(s) in Resources subfolder: " + RarityTemplate._folderName);
 			else
-				_data = templates.ToDictionary(x => x.name.GetDeterministicHashCode(), x => x);
+				_data = templates.ToDictionary(x => x.hash, x => x);
 			
 		}
 		

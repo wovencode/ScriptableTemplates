@@ -28,8 +28,9 @@ namespace wovencode {
 		[Tooltip("The name of a subfolder in the project 'Resources' folder (case-sensitive)")]
     	public string 			folderName;
     	
-		// we cache the object name here for a bit of performance
+		// we cache a few properties here for performance
 		protected string 		_name;
+		protected int			_hash;
 		
 		// -------------------------------------------------------------------------------
         // BuildCache
@@ -49,6 +50,20 @@ namespace wovencode {
 				if (string.IsNullOrWhiteSpace(_name))
 					_name = base.name;
 				return _name;
+			}
+		}
+		
+		// -------------------------------------------------------------------------------
+        // hash
+        // instead of calculating the objects hash (from its name) everytime it is
+        // accessed, we cache it in a local variable instead and return that one
+        // -------------------------------------------------------------------------------
+		public int hash
+		{
+			get {
+				if (_hash == 0)
+					_hash = name.GetDeterministicHashCode();
+				return _hash;
 			}
 		}
 		

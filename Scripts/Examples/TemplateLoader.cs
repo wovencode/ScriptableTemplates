@@ -1,4 +1,9 @@
-﻿
+﻿// =======================================================================================
+// Wovencore
+// by Weaver (Fhiz)
+// MIT licensed
+// =======================================================================================
+
 using wovencode;
 using System.Collections;
 using System.Collections.Generic;
@@ -11,7 +16,7 @@ public class TemplateLoader : MonoBehaviour
 	
 		This is just a example to demonstrate how template loading and caching works
 		
-		In a real project you do not require the TemplateLoader, as the templates are
+		In a real project you DO NOT require the TemplateLoader, as the templates are
 		simply loaded into memory the first time they are accessed.
 	
 		Add this script to a GameObject in your scene and hit Play, then take a look

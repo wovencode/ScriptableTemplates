@@ -1,4 +1,4 @@
-Templates (Wovencore)
+ScriptableTemplates (Wovencore)
 ==========================================================================================
 by Fhiz (Weaver)
 MIT licensed

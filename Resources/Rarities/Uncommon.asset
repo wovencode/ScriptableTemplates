@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e90e0efa32852486a9da0a4f06e1ff56, type: 3}
   m_Name: Uncommon
   m_EditorClassIdentifier: 
-  title: New RarityTemplate
+  title: Uncommon
   folderName: Rarities
   color: {r: 0, g: 0.1187284, b: 1, a: 1}
   borderImage: {fileID: 0}

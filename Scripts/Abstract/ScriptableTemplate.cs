@@ -1,5 +1,5 @@
 ﻿// =======================================================================================
-// ScriptableTemplate
+// Wovencore
 // by Weaver (Fhiz)
 // MIT licensed
 // =======================================================================================
@@ -27,6 +27,9 @@ namespace wovencode {
 													
 		[Tooltip("The name of a subfolder in the project 'Resources' folder (case-sensitive)")]
     	public string 			folderName;
+    	// by specifying a subfolder, we can improve the Resources.LoadAll call a lot
+    	// you just have to go sure that all templates of the corresponding type are
+    	// in the correct subfolder
     	
 		// we cache a few properties here for performance
 		protected string 		_name;
@@ -69,7 +72,7 @@ namespace wovencode {
 		
 		// -------------------------------------------------------------------------------
         // OnValidate
-        // if the title is empty, we simple copy the object name into the title
+        // if the title is empty, we simply copy the object name into the title
         // note that we cannot cache the folderName here, because it would the same for all objects of this type
         // -------------------------------------------------------------------------------
 		public virtual void OnValidate()

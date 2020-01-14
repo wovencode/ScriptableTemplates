@@ -19,7 +19,7 @@ namespace wovencode
 		[DevExtMethods("Constructor")]
 		public static void Constructor_Templates()
 		{
-			EditorTools.AddScriptingDefine("WOCO_TEMPLATES");
+			EditorTools.AddScriptingDefine("wTEMPLATES");
 		}
 
 	}

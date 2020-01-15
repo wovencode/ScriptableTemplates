@@ -5,7 +5,7 @@
 // =======================================================================================
 
 using System;
-using System.Text;
+using System.Collections.ObjectModel;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -27,16 +27,16 @@ namespace wovencode {
 		
 		public static string _folderName = "";	
 		
-		static Dictionary<int, RarityTemplate> _data;
+		static RarityTemplateDictionary _data;
 		
 		// -------------------------------------------------------------------------------
         // data
         // -------------------------------------------------------------------------------
-		public static Dictionary<int, RarityTemplate> data
+		public static ReadOnlyDictionary<int, RarityTemplate> data
 		{
 			get {
 				RarityTemplate.BuildCache();
-				return _data;
+				return _data.data;
 			}
 		}
 		
@@ -45,15 +45,8 @@ namespace wovencode {
         // -------------------------------------------------------------------------------
 		public static void BuildCache()
 		{
-			if (_data != null) return;
-
-			List<RarityTemplate> templates = Resources.LoadAll<RarityTemplate>(RarityTemplate._folderName).ToList();
-					
-			if (templates.HasDuplicates())
-				Debug.LogWarning("[Warning] Skipped loading due to duplicate(s) in Resources subfolder: " + RarityTemplate._folderName);
-			else
-				_data = templates.ToDictionary(x => x.hash, x => x);
-			
+			if (_data == null)
+				_data = new RarityTemplateDictionary(RarityTemplate._folderName);
 		}
 		
 		// -------------------------------------------------------------------------------

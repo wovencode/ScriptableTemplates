@@ -5,7 +5,7 @@
 // =======================================================================================
 
 using System;
-using System.Text;
+using System.Collections.ObjectModel;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -14,12 +14,13 @@ using wovencode;
 namespace wovencode {
 	
 	// ===================================================================================
-	// ExampleTemplate
+	// BarTemplate
 	// ===================================================================================
-	public partial class ExampleTemplate : ScriptableTemplate
+	[CreateAssetMenu(fileName = "New BarTemplate", menuName = "Templates/New BarTemplate", order = 999)]
+	public partial class BarTemplate : ScriptableTemplate
 	{
-		
-		/*
+    
+    	/*
     	
     		Add your custom properties here, like:
     		
@@ -31,9 +32,10 @@ namespace wovencode {
     	
     	// performance improvement:
     	// Resources.LoadAll on a specific folder is much faster than on the whole Resources folder
-		public static string _folderName = "";	
+		public static string _folderName = "";
 		
-		static Dictionary<int, ExampleTemplate> _data;
+		// this is our custom class that holds the dictionary data
+		static BarTemplateDictionary _data;
 		
 		// -------------------------------------------------------------------------------
         // data
@@ -41,13 +43,12 @@ namespace wovencode {
         // skips if there are any duplicates and notifies the user
         // returns the cached dictionary
         // -------------------------------------------------------------------------------
-		public static Dictionary<int, ExampleTemplate> data
+		public static ReadOnlyDictionary<int, BarTemplate> data
 		{
 			get {
 			
-				ExampleTemplate.BuildCache();
-			
-				return _data;
+				BarTemplate.BuildCache();
+				return _data.data;
 			}
 		}
 		
@@ -58,15 +59,8 @@ namespace wovencode {
         // -------------------------------------------------------------------------------
 		public static void BuildCache()
 		{
-			if (_data != null) return;
-
-			List<ExampleTemplate> templates = Resources.LoadAll<ExampleTemplate>(ExampleTemplate._folderName).ToList();
-					
-			if (templates.HasDuplicates())
-				Debug.LogWarning("[Warning] Skipped loading due to duplicate(s) in Resources subfolder: " + ExampleTemplate._folderName);
-			else
-				_data = templates.ToDictionary(x => x.hash, x => x);
-			
+			if (_data == null)
+				_data = new BarTemplateDictionary(BarTemplate._folderName);
 		}
 		
 		// -------------------------------------------------------------------------------
@@ -86,7 +80,7 @@ namespace wovencode {
         // -------------------------------------------------------------------------------
 		public override void OnValidate()
 		{
-	
+			
 			base.OnValidate(); // always call base OnValidate as well!
 			
 			/*
@@ -98,7 +92,7 @@ namespace wovencode {
 		}
 		
 		// -------------------------------------------------------------------------------
-		
+        
 	}
 
 }

@@ -5,7 +5,7 @@
 // =======================================================================================
 
 using System;
-using System.Text;
+using System.Collections.ObjectModel;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -34,7 +34,8 @@ namespace wovencode {
     	// Resources.LoadAll on a specific folder is much faster than on the whole Resources folder
 		public static string _folderName = "";
 		
-		static Dictionary<int, FooTemplate> _data;
+		// this is our custom class that holds the dictionary data
+		static FooTemplateDictionary _data;
 		
 		// -------------------------------------------------------------------------------
         // data
@@ -42,13 +43,11 @@ namespace wovencode {
         // skips if there are any duplicates and notifies the user
         // returns the cached dictionary
         // -------------------------------------------------------------------------------
-		public static Dictionary<int, FooTemplate> data
+		public static ReadOnlyDictionary<int, FooTemplate> data
 		{
 			get {
-			
 				FooTemplate.BuildCache();
-			
-				return _data;
+				return _data.data;
 			}
 		}
 		
@@ -59,15 +58,8 @@ namespace wovencode {
         // -------------------------------------------------------------------------------
 		public static void BuildCache()
 		{
-			if (_data != null) return;
-				
-			List<FooTemplate> templates = Resources.LoadAll<FooTemplate>(FooTemplate._folderName).ToList();
-					
-			if (templates.HasDuplicates())
-				Debug.LogWarning("[Warning] Skipped loading due to duplicate(s) in Resources subfolder: " + FooTemplate._folderName);
-			else
-				_data = templates.ToDictionary(x => x.hash, x => x);
-			
+			if (_data == null)
+				_data = new FooTemplateDictionary(FooTemplate._folderName);
 		}
 		
 		// -------------------------------------------------------------------------------

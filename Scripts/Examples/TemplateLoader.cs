@@ -27,13 +27,20 @@ public class TemplateLoader : MonoBehaviour
 	public string templateNameFoo 	= "FooTemplate1";
 	public string templateNameBar 	= "BarTemplate1";
 	
+	[Header("Debug Mode")]
+	public DebugHelper debug;
+	
 	// -----------------------------------------------------------------------------------
 	// Awake
 	// -----------------------------------------------------------------------------------
     void Awake()
     {
-    	LoadFoo();
-    	LoadBar();
+    	if (debug.debugMode)
+    	{
+    		LoadFoo();
+    		LoadBar();
+    		LoadSingleton();
+    	}
     }
     
 	// -----------------------------------------------------------------------------------
@@ -70,5 +77,18 @@ public class TemplateLoader : MonoBehaviour
     	
         Debug.Log("A total of '"+BarTemplate.data.Count+"' BarTemplates have been cached from '"+BarTemplate._folderName+"' into the Dictionary.");
 	}
-
+	
+	// -----------------------------------------------------------------------------------
+	// LoadSingleton
+	// 
+	// -----------------------------------------------------------------------------------
+	void LoadSingleton()
+	{
+		Debug.Log("----- LOAD GAME RULES -----");
+		Debug.Log("Trying to access GameRulesTemplate via Singleton...");
+		Debug.Log("maxPlayersPerUser: "+GameRulesTemplate.singleton.maxPlayersPerUser);
+	}
+	
+	// -----------------------------------------------------------------------------------
+	
 }

@@ -73,8 +73,7 @@ namespace wovencode {
 			if (_folderName != folderName)
 				_folderName = folderName;
 			
-			BuildCache(true);
-			
+			_data = null;
 		}
 		
 		// -------------------------------------------------------------------------------

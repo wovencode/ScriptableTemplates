@@ -87,6 +87,8 @@ public class TemplateLoader : MonoBehaviour
 		Debug.Log("----- LOAD GAME RULES -----");
 		Debug.Log("Trying to access GameRulesTemplate via Singleton...");
 		Debug.Log("maxPlayersPerUser: "+GameRulesTemplate.singleton.maxPlayersPerUser);
+		Debug.Log("maxUsersPerDevice: "+GameRulesTemplate.singleton.maxUsersPerDevice);
+		Debug.Log("maxUsersPerEmail: "+GameRulesTemplate.singleton.maxUsersPerEmail);
 	}
 	
 	// -----------------------------------------------------------------------------------

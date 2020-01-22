@@ -5,7 +5,7 @@
 // =======================================================================================
 
 using Wovencode;
-using Wovencode.Debug;
+using Wovencode.Debugging;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;

@@ -10,6 +10,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using UnityEngine;
 using Wovencode;
+using Wovencode.Debug;
 
 namespace Wovencode
 {
@@ -28,7 +29,7 @@ namespace Wovencode
 			List<BarTemplate> templates = Resources.LoadAll<BarTemplate>(folderName).ToList();
 			
 			if (templates.HasDuplicates())
-				Debug.LogWarning("[Warning] Skipped loading due to duplicate(s) in Resources subfolder: " + folderName);
+				debug.LogWarning("[Warning] Skipped loading due to duplicate(s) in Resources subfolder: " + folderName);
 			else
 				data = new ReadOnlyDictionary<int, BarTemplate>(templates.ToDictionary(x => x.hash, x => x));
 		}

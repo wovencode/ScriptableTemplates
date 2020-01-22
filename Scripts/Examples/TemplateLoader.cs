@@ -5,6 +5,7 @@
 // =======================================================================================
 
 using Wovencode;
+using Wovencode.Debug;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -50,17 +51,24 @@ public class TemplateLoader : MonoBehaviour
 	void LoadFoo()
 	{
 	
-		Debug.Log("----- LOAD FOO -----");
-		Debug.Log("Trying to load all FooTemplates by accessing one by name...");
+		debug.Log("----- LOAD FOO -----");
+		debug.Log("Trying to load all FooTemplates by accessing one by name...");
+    	
+    	debug.StartProfile("LoadFoo");
     	
     	FooTemplate.data.TryGetValue(templateNameFoo.GetDeterministicHashCode(), out FooTemplate template);
     	
+    	debug.StopProfile("LoadFoo");
+    	
         if (template)
-        	Debug.Log("The FooTemplate '"+template.title+"' was found in the 'FooTemplate' Dictionary");
+        	debug.Log("The FooTemplate '"+template.title+"' was found in the 'FooTemplate' Dictionary");
         else
-        	Debug.Log("No FooTemplate named '"+templateNameFoo+"' was found!");
+        	debug.Log("No FooTemplate named '"+templateNameFoo+"' was found!");
         
-        Debug.Log("A total of '"+FooTemplate.data.Count+"' FooTemplates have been cached from '"+FooTemplate._folderName+"' into the Dictionary.");
+        debug.Log("A total of '"+FooTemplate.data.Count+"' FooTemplates have been cached from '"+FooTemplate._folderName+"' into the Dictionary.");
+		
+		debug.PrintProfile("LoadFoo");
+		
 	}
 	
 	// -----------------------------------------------------------------------------------
@@ -70,12 +78,19 @@ public class TemplateLoader : MonoBehaviour
 	void LoadBar()
 	{
 	
-		Debug.Log("----- LOAD BAR -----");
-		Debug.Log("Trying to load all BarTemplates by using 'BuildCache'...");
+		debug.Log("----- LOAD BAR -----");
+		debug.Log("Trying to load all BarTemplates by using 'BuildCache'...");
+    	
+    	debug.StartProfile("LoadBar");
     	
     	BarTemplate.BuildCache();
     	
-        Debug.Log("A total of '"+BarTemplate.data.Count+"' BarTemplates have been cached from '"+BarTemplate._folderName+"' into the Dictionary.");
+    	debug.StopProfile("LoadBar");
+    	
+        debug.Log("A total of '"+BarTemplate.data.Count+"' BarTemplates have been cached from '"+BarTemplate._folderName+"' into the Dictionary.");
+	
+		debug.PrintProfile("LoadBar");
+		
 	}
 	
 	// -----------------------------------------------------------------------------------
@@ -84,11 +99,11 @@ public class TemplateLoader : MonoBehaviour
 	// -----------------------------------------------------------------------------------
 	void LoadSingleton()
 	{
-		Debug.Log("----- LOAD GAME RULES -----");
-		Debug.Log("Trying to access GameRulesTemplate via Singleton...");
-		Debug.Log("maxPlayersPerUser: "+GameRulesTemplate.singleton.maxPlayersPerUser);
-		Debug.Log("maxUsersPerDevice: "+GameRulesTemplate.singleton.maxUsersPerDevice);
-		Debug.Log("maxUsersPerEmail: "+GameRulesTemplate.singleton.maxUsersPerEmail);
+		debug.Log("----- LOAD GAME RULES -----");
+		debug.Log("Trying to access GameRulesTemplate via Singleton...");
+		debug.Log("maxPlayersPerUser: "+GameRulesTemplate.singleton.maxPlayersPerUser);
+		debug.Log("maxUsersPerDevice: "+GameRulesTemplate.singleton.maxUsersPerDevice);
+		debug.Log("maxUsersPerEmail: "+GameRulesTemplate.singleton.maxUsersPerEmail);
 	}
 	
 	// -----------------------------------------------------------------------------------

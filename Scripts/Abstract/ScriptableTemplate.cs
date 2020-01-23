@@ -40,7 +40,7 @@ namespace Wovencode {
         // This methods builds the actual dictionary and fills it with data, its up to the
         // derived class how to do that.
         // -------------------------------------------------------------------------------
-		//public abstract static void BuildCache();
+		//public abstract static void BuildCache(bool force=false);
 		
 		// -------------------------------------------------------------------------------
         // name

@@ -10,7 +10,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using UnityEngine;
 using Wovencode;
-using Wovencode.Debugging;
+using Wovencode.DebugManager;
 
 namespace Wovencode
 {

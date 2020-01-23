@@ -5,7 +5,7 @@
 // =======================================================================================
 
 using Wovencode;
-using Wovencode.Debugging;
+using Wovencode.DebugManager;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -29,7 +29,7 @@ public class TemplateLoader : MonoBehaviour
 	public string templateNameBar 	= "BarTemplate1";
 	
 	[Header("Debug Mode")]
-	public DebugHelper debug;
+	public DebugHelper debug = new DebugHelper();
 	
 	// -----------------------------------------------------------------------------------
 	// Awake
